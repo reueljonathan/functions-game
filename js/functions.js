@@ -9,7 +9,7 @@ game = (function(){
 		funcInput = DOM.get('#function-input'),		
 		previousTime=0,		
 		pause = false,
-		actualLevel = 4,
+		actualLevel = 0,
 		level,
 
 		tipIndex = 0,
