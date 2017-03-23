@@ -1,0 +1,3 @@
+world = {
+	gravity: 1
+}

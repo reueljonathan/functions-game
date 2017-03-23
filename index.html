@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Functions</title>
+
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<div class='container'>
+		<div class='game-canvas' id='canvas-container'>
+		</div>
+		<input type="text" id='function-input' placeholder="0,0,x" disabled>
+		<div id='level-transition' class='level-transition'></div>
+	</div>
+
+	<div id='game-header'>
+		<div id='game-title'>FUNCTIONS</div>
+		<button id='btn-play'>Play</button>
+	</div>
+
+
+
+	<footer>
+		<a href="http://twitter.com/reueljonathan" target="_blank">@reueljonathan</a>
+	</footer>
+
+	<button id="help">?</button>
+	<div id="help-content">
+		<h3 class="title">Help:</h3>
+
+		<h4>Syntax basics examples:</h4>
+		<ul>
+			<li>Sum (+): <b>1 + 2</b></li>
+			<li>Subtraction (-): <b>3 - 2</b></li>
+			<li>Multiplication (*): <b>5 * 10</b></li>
+			<li>Division (/): <b>100 / 2</b></li>
+			<li>Decimal number: <b>0.5</b> (or <b>.5</b>), <b>2.5</b></li>
+		</ul>
+
+		<h4>Functions examples:</h4>
+
+		<ul>
+			<li>pattern: <b>a, b, f(x)</b>, where <b>a &lt; b</b></li>
+
+			<li>Constant: <b>0, 5, 10</b></li>
+			<li>Line: <b>-9, 9, x</b></li>
+			<li>Quadratic: <b>-9, 9, x * x</b></li>
+		</ul>
+	</div>
+
+
+	<script type="text/javascript">
+		'use strict';
+	</script>
+
+	
+
+	<script src="js/dom.js"></script>
+	<script src="js/world.js"></script>
+	<script src="js/graphics.js"></script>
+	<script src="js/vectors.js"></script>
+	<script src="js/ball.js"></script>
+	<script src="js/goal.js"></script>
+	<script src="js/segment.js"></script>
+	<script src="js/obstacle.js"></script>
+	<script src="js/levels.js"></script>
+	<script src="js/level.js"></script>
+	<script src="js/functions.js"></script>
+
+
+	<script>
+		var btn = DOM.get("#help"),
+			help = DOM.get("#help-content"),
+			showingHelp = false;
+
+		btn.onclick = function(){
+			var hs = help.style;
+			if (!showingHelp){
+				hs.opacity = 1;
+				hs.width = '250px';
+				hs.height = '350px';
+				showingHelp = true;
+			}else{
+				hs.opacity = 0;
+				hs.width = 0;
+				hs.height = 0;
+				showingHelp = false;
+			}
+		}
+	</script>
+</body>
+</html>
