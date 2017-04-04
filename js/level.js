@@ -33,7 +33,13 @@ function Level(params){
 
 		previousTime = 0,
 
-		showingTips = false;
+		showingTips = false,
+
+		lowestX,
+		greatestX,
+
+		lowestY,
+		greatestY;
 
 	goal.setTarget(ball);
 
@@ -63,6 +69,12 @@ function Level(params){
 		numUnitsX = Math.round(width/unitSize);
 		numUnitsY = Math.round(height/unitSize);
 
+		lowestX = (center.x/unitSize)*-1;
+		greatestX = (width-center.x)/unitSize;
+
+		lowestY = ((height-center.y)/unitSize)*-1;
+		greatestY = center.y/unitSize;
+
 		ball.setBounds(w,h);
 	}
 
@@ -75,6 +87,25 @@ function Level(params){
 		graphics.drawLine(preDrawCtx,
 			{x:center.x,y:0}, {x:center.x,y:height},
 			'#fff', 2);
+	}
+
+	this.drawNumbers = function(){
+		preDrawCtx.fillStyle = "#fff";
+		preDrawCtx.textAlign = "center";
+		preDrawCtx.font = "bold 15px Architects Daughter";
+
+		for(var x = 5; x<greatestX; x+=5)
+			preDrawCtx.fillText(x, center.x + x*unitSize, center.y + 15);
+
+		for(var x = -5; x>lowestX; x-=5)
+			preDrawCtx.fillText(x, center.x + x*unitSize, center.y + 15);
+
+
+		for(var y=5; y<greatestY; y+=5)
+			preDrawCtx.fillText(y, center.x - 10 , center.y - y*unitSize + 5);
+
+		for(var y=-5; y>lowestY; y-=5)
+			preDrawCtx.fillText(y, center.x-10, center.y - y*unitSize + 5);
 	}
 
 	this.drawGuides = function(){
@@ -184,19 +215,20 @@ function Level(params){
 
 		for(var i =0;i<segments.length; i++){
 			segments[i].setTarget(ball);
-		}
-		
-		var lowestX = (center.x/unitSize)*-1,
-			greatestX = (width-center.x)/unitSize;
+		}		
 
 		functions = input.split(';');
 
-		for(var i = 0, f; i<functions.length; i++){
-			f = functions[i].split(',');
+		for(var i = 0, f, interval; i<functions.length; i++){
+			f = functions[i].split(' ');
 
-			var lower = parseInt(f[0]) > lowestX ? parseInt(f[0]) : lowestX,
-				greater = parseInt(f[1]) < greatestX ? parseInt(f[1]) : greatestX;
-				funcString = f[2];
+			console.log('f', f);
+			interval = f[0].match(/-?\d+/g);
+			console.log('interval', interval);
+
+			var lower = parseInt(interval[0]) > lowestX ? parseInt(interval[0]) : lowestX,
+				greater = parseInt(interval[1]) < greatestX ? parseInt(interval[1]) : greatestX;
+				funcString = f[1];
 
 
 
@@ -219,6 +251,7 @@ function Level(params){
 		if( !!numUnitsY && !!numUnitsX){
 			this.drawGuides();
 			this.drawAxis();
+			this.drawNumbers();
 		}
 
 		for(var i = 0; i<segments.length; i++){

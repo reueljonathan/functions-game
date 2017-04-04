@@ -67,7 +67,7 @@ game = (function(){
 
 		funcInput.addEventListener('keydown', function(e){
 			if(e.keyCode === 13 && funcInput.value
-				&& funcInput.value.match(/-?\d+,-?\d+,.+;?/)){
+				&& funcInput.value.match(/\[-?\d+,\d+]\s.+/)){
 
 				e.preventDefault();
 

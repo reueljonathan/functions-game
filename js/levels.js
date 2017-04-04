@@ -8,13 +8,14 @@ LEVELS = [
 		goalPos: {x:220,y:400},
 		// tip: 'Write functions in the format: \'Lower X, Greater X, function\'',
 		tips: [
-			// ['Welcome to the Functions game!', 3000],
-			// ['Your goal is to take the ball to the target', 3000],
-			// ['To do that, just write below something in the pattern: <strong>a, b, f(x)</strong>', 5000],
-			// ['where <strong>a</strong> is the lowest value that f(x) will calculate,',  4000],
-			// ['and <strong>b</strong> is the greatest value that f(x) will calculate',  4000],
-			// ['and <strong>f(x)</strong> is path to the ball go to target',  4000],
-			// ['Type \'<strong>-9, 9, x</strong>\' below and press Enter', 4000]
+			['Welcome to the Functions game!', 3000],
+			['Let\'s start with the basics:', 3000],
+			['Your goal is to take the ball to the target', 3000],
+			['To do that, just write below something in the pattern: <b>a, b, f(x)</b>', 5000],
+			['where <b>a</b> is the lowest value that f(x) will calculate,',  4000],
+			['and <b>b</b> is the greatest value that f(x) will calculate',  4000],
+			['and <b>f(x)</b> is path to the ball go to target',  4000],
+			['Type \'<b>-9, 9, x</b>\' below and press Enter', 4000]
 		]
 	},
 	{
@@ -27,8 +28,8 @@ LEVELS = [
 		tips:[
 			// ['Great! You drew a line!', 3000],
 			// ['You can move the line upwards or downwards', 3000],
-			// ['using a function like <strong>x+c</strong> or <strong>x-c</strong>', 3000],
-			// ['where <strong>c</strong> is a number.', 3000],
+			// ['using a function like <b>x+c</b> or <b>x-c</b>', 3000],
+			// ['where <b>c</b> is a number.', 3000],
 			// ['Can you beat this one?', 3000]
 		],
 	},
@@ -43,9 +44,9 @@ LEVELS = [
 		tips:[
 			// ['Well done!', 3000],
 			// ['You can also move the line to the left or to the right',  4000],
-			// ['Just use a <strong>x+c</strong> or <strong>x-c</strong>...', 4000],
+			// ['Just use a <b>x+c</b> or <b>x-c</b>...', 4000],
 			// ['and change the interval!', 3000],
-			// ['What about \'<strong>-13, 4, x+5</strong>\'?', 5000]
+			// ['What about \'<b>-13, 4, x+5</b>\'?', 5000]
 		],
 	},
 
@@ -59,9 +60,9 @@ LEVELS = [
 		tips:[
 			// ['Well done!', 3000],
 			// ['You can also move the line to the left or to the right',  4000],
-			// ['Just use a <strong>x+c</strong> or <strong>x-c</strong>...', 4000],
+			// ['Just use a <b>x+c</b> or <b>x-c</b>...', 4000],
 			// ['and change the interval!', 3000],
-			// ['What about \'<strong>-13, 4, x+5</strong>\'?', 5000]
+			// ['What about \'<b>-13, 4, x+5</b>\'?', 5000]
 
 		],
 	},
