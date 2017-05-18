@@ -180,7 +180,8 @@ function Level(params){
 			tipCounter += t-previousTime;
 
 			if(tipCounter > tips[tipIndex][1] && showingTips){
-				if(tipIndex+1 < tips.length)
+				tipIndex++;
+				if(tipIndex === tips.length)
 					tipIndex = 0;
 
 				container.removeChild(levelTip);

@@ -18,8 +18,8 @@ LEVELS = [
 			['Type <b>[-9, 9] x</b> below and press Enter', 4000]
 		],
 		tips: [
-			['remember that a line formula is <b>f(x) = ax + b</b>', 5000]
-
+			['remember that a line formula is <b>f(x) = ax + b</b>', 5000],
+			['<b>[a,b]</b> is called <b>interval</b>', 5000]
 		],
 		triesBeforeTip: 2
 	},
