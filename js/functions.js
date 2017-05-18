@@ -66,12 +66,9 @@ game = (function(){
 	
 
 		funcInput.addEventListener('keydown', function(e){
-			if(e.keyCode === 13 && funcInput.value
-				&& funcInput.value.match(/\[-?\d+,\d+]\s.+/)){
-
+			if(e.keyCode === 13 && funcInput.value){
 				e.preventDefault();
-
-				if(!!level) level.setInput(funcInput.value);
+				if(!!level) level.setInput(funcInput.value.trim());
 			}
 		});
 
@@ -117,7 +114,7 @@ game = (function(){
 			levelHeader.addEventListener('animationend', function(e){
 				console.log(1);
 				
-				level.showTips();
+				level.showTutorial();
 			});
 
 			levelTip.classList.add('level-tip');

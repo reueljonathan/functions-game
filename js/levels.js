@@ -7,16 +7,21 @@ LEVELS = [
 		ballPos: {x:550,y:60},
 		goalPos: {x:220,y:400},
 		// tip: 'Write functions in the format: \'Lower X, Greater X, function\'',
-		tips: [
-			['Welcome to the Functions game!', 3000],
+		tutorial: [
+			['Welcome to the <b>Functions</b> game!', 3000],
 			['Let\'s start with the basics:', 3000],
 			['Your goal is to take the ball to the target', 3000],
-			['To do that, just write below something in the pattern: <b>a, b, f(x)</b>', 5000],
+			['To do that, just write below something in the pattern: <b>[a, b] f(x)</b>', 5000],
 			['where <b>a</b> is the lowest value that f(x) will calculate,',  4000],
 			['and <b>b</b> is the greatest value that f(x) will calculate',  4000],
 			['and <b>f(x)</b> is path to the ball go to target',  4000],
-			['Type \'<b>-9, 9, x</b>\' below and press Enter', 4000]
-		]
+			['Type <b>[-9, 9] x</b> below and press Enter', 4000]
+		],
+		tips: [
+			['remember that a line formula is <b>f(x) = ax + b</b>', 5000]
+
+		],
+		triesBeforeTip: 2
 	},
 	{
 		number: 2,
@@ -25,7 +30,7 @@ LEVELS = [
 		name: 'elevator',
 		ballPos: {x:550,y:100},
 		goalPos: {x:220,y:440},
-		tips:[
+		tutorial:[
 			// ['Great! You drew a line!', 3000],
 			// ['You can move the line upwards or downwards', 3000],
 			// ['using a function like <b>x+c</b> or <b>x-c</b>', 3000],
@@ -41,7 +46,7 @@ LEVELS = [
 		name: 'left and right',
 		ballPos: {x:430,y:100},
 		goalPos: {x:100,y:440},
-		tips:[
+		tutorial:[
 			// ['Well done!', 3000],
 			// ['You can also move the line to the left or to the right',  4000],
 			// ['Just use a <b>x+c</b> or <b>x-c</b>...', 4000],
@@ -57,7 +62,7 @@ LEVELS = [
 		name: 'rotating',
 		ballPos: {x:700,y:200},
 		goalPos: {x:100,y:300},
-		tips:[
+		tutorial:[
 			// ['Well done!', 3000],
 			// ['You can also move the line to the left or to the right',  4000],
 			// ['Just use a <b>x+c</b> or <b>x-c</b>...', 4000],
@@ -74,7 +79,7 @@ LEVELS = [
 		name: 'inverting signals',
 		ballPos: {x:220,y:50},
 		goalPos: {x:575,y:400},
-		tips:[
+		tutorial:[
 			// ['Well done!', 1000]
 		],
 	},
@@ -86,7 +91,7 @@ LEVELS = [
 		name: 'inverting signals',
 		ballPos: {x:220,y:50},
 		goalPos: {x:575,y:400},
-		tips:[
+		tutorial:[
 			// ['Well done!', 1000]
 		],
 

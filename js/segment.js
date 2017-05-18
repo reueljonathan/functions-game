@@ -30,7 +30,6 @@ function Segment(x1, y1, x2, y2){
 			}
 		}
 
-
 		this.setTarget = function(t){
 			target = t;
 			radius = target.getRadius();

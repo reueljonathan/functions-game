@@ -10,7 +10,7 @@
 	<div class='container'>
 		<div class='game-canvas' id='canvas-container'>
 		</div>
-		<input type="text" id='function-input' placeholder="0,0,x" disabled>
+		<input type="text" id='function-input' placeholder="[0,0] x" disabled>
 		<div id='level-transition' class='level-transition'></div>
 	</div>
 
@@ -25,6 +25,7 @@
 		<a href="http://twitter.com/reueljonathan" target="_blank">@reueljonathan</a>
 	</footer>
 
+	<!-- <button id="lang"></button> -->
 	<button id="help">?</button>
 	<div id="help-content">
 		<h3 class="title">Help:</h3>
@@ -41,11 +42,11 @@
 		<h4>Functions examples:</h4>
 
 		<ul>
-			<li>pattern: <b>a, b, f(x)</b>, where <b>a &lt; b</b></li>
+			<li>pattern: <b>[ a , b ] f(x)</b>, where <b>a &lt; b</b></li>
 
-			<li>Constant: <b>0, 5, 10</b></li>
-			<li>Line: <b>-9, 9, x</b></li>
-			<li>Quadratic: <b>-9, 9, x * x</b></li>
+			<li>Constant: <b>[0, 5] 10</b></li>
+			<li>Line: <b>[-9, 9] x</b></li>
+			<li>Quadratic: <b>[-9, 9] x * x</b></li>
 		</ul>
 	</div>
 
@@ -57,7 +58,6 @@
 	
 
 	<script src="js/dom.js"></script>
-	<script src="js/world.js"></script>
 	<script src="js/graphics.js"></script>
 	<script src="js/vectors.js"></script>
 	<script src="js/ball.js"></script>
@@ -88,6 +88,33 @@
 				showingHelp = false;
 			}
 		}
+
+		// ----
+		/*var langBtn = DOM.get("#lang");
+
+		langBtn.innerHTML = localStorage.getItem('lang');
+		langBtn.onclick = function(){
+			if(Storage){
+				let lang = localStorage.getItem('lang');
+
+				if(!lang){
+					lang = 'EN';
+					localStorage.setItem('lang', lang);
+				}else{
+					if(lang==='EN'){
+						lang = 'PT';
+					}else{
+						lang = 'EN';
+					}
+
+					this.innerHTML = lang;
+					localStorage.setItem('lang', lang);
+				}
+			}else{
+				console.err("localStorage not supported");
+			}
+
+		}*/
 	</script>
 </body>
 </html>

@@ -159,7 +159,7 @@ a:hover{
 	color: #fff;
 }
 
-#help{
+#help, #lang{
 	animation: none;
     padding: 0;
     border-radius: 100%;
@@ -167,14 +167,18 @@ a:hover{
     background: #423075;
     color: #fff;
     font-weight: bold;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     text-align: center;
     font-size: 15px;
     position: absolute;
     top: 5px;
     right: 5px;
     z-index: 3;
+}
+
+#lang{
+	right: 40px;
 }
 
 #help-content{

@@ -1,3 +1,0 @@
-world = {
-	gravity: 1
-}

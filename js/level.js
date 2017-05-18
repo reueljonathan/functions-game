@@ -7,11 +7,15 @@ function Level(params){
 		goal = new Goal(params.goalPos.x, params.goalPos.y),
 		segments=[],
 		obstacles=[],
-		tipIndex = 0,
+		tutorialIndex = 0,
+		tipIndex= 0,
 		tipTime, 
+		tutorialCounter=0,
 		tipCounter=0,
 		lastCall = 0,
+		tutorial = params.tutorial,
 		tips = params.tips,
+		numTries = 0,
 		container,
 
 		levelHeader,
@@ -33,6 +37,7 @@ function Level(params){
 
 		previousTime = 0,
 
+		showingTutorial	 = false,
 		showingTips = false,
 
 		lowestX,
@@ -129,11 +134,10 @@ function Level(params){
 	}
 
 	this.setPassedCallback = function(gameCallback){
-		var hideTips = this.hideTips;
+		var hideTutorial = this.hideTutorial;
 		goal.setPassedCallback(function(){
-			console.log(2);
 			gameCallback();
-			hideTips();
+			hideTutorial();
 		});
 	}
 
@@ -155,54 +159,72 @@ function Level(params){
 			obstacles[i].update(t);
 		}
 
-		if(showingTips){
-			tipCounter += t-previousTime;
-			if(tipCounter > tips[tipIndex][1] && showingTips){
-				if(tipIndex+1 < tips.length){
-					tipCounter = 0;
-					tipIndex++;
-					levelTip.innerHTML = tips[tipIndex][0];
+		if(showingTutorial){
+			tutorialCounter += t-previousTime;
+			if(tutorialCounter > tutorial[tutorialIndex][1] && showingTutorial){
+				if(tutorialIndex+1 < tutorial.length){
+					tutorialCounter = 0;
+					tutorialIndex++;
+					levelTip.innerHTML = tutorial[tutorialIndex][0];
 
 				}else{
-					console.log(2);				
 					container.removeChild(levelTip);
-					showingTips = false;
+					showingTutorial = false;
 					this.enableFunctionInput();
 				}
 			}
 		}
+
+		if(showingTips){
+			console.log(2);
+			tipCounter += t-previousTime;
+
+			if(tipCounter > tips[tipIndex][1] && showingTips){
+				if(tipIndex+1 < tips.length)
+					tipIndex = 0;
+
+				container.removeChild(levelTip);
+				showingTips = false;
+			}
+		}
+
 		previousTime = t;
 	}
 
 	this.enableFunctionInput= function(){
-		console.log(4);
 		functionInput.removeAttribute('disabled');
 	}
 
-	this.showTips = function(){
-		console.log(7);
-		if( params.tips.length > 0){
-			tipCounter = 0;
-			showingTips = true;
-			levelTip.innerHTML = tips[tipIndex][0];
+	this.showTutorial = function(){
+		if( params.tutorial.length > 0){
+			tutorialCounter = 0;
+			showingTutorial = true;
+			levelTip.innerHTML = tutorial[tutorialIndex][0];
 			container.appendChild(levelTip);
 
-
 		}else{
-			console.log(6);
-			showingTips = false;
+			showingTutorial = false;
 			this.enableFunctionInput();
 		}
 
 		if( levelHeader.parentNode === container){
-			console.log(3);
 			container.removeChild(levelHeader);
 		}
 	}
 
-	this.hideTips = function(){
-		console.log(5);
-		showingTips = false;
+	this.hideTutorial = function(){
+		showingTutorial = false;
+	}
+
+	this.showTips = function(){
+		if(params.tips.length > 0){
+			showingTips = true;
+			tipCounter = 0;
+			levelTip.innerHTML = tips[tipIndex][0];
+			container.appendChild(levelTip);
+		}else{
+			showingTips = false;
+		}
 	}
 
 	this.setContainer = function(c){
@@ -219,12 +241,10 @@ function Level(params){
 
 		functions = input.split(';');
 
-		for(var i = 0, f, interval; i<functions.length; i++){
-			f = functions[i].split(' ');
+		for(var i = 0, f, interval; i<functions.length && !!functions[i].length; i++){
+			f = functions[i].trim().split(' ');
 
-			console.log('f', f);
 			interval = f[0].match(/-?\d+/g);
-			console.log('interval', interval);
 
 			var lower = parseInt(interval[0]) > lowestX ? parseInt(interval[0]) : lowestX,
 				greater = parseInt(interval[1]) < greatestX ? parseInt(interval[1]) : greatestX;
@@ -295,20 +315,34 @@ function Level(params){
 		levelTip = el;
 	}
 
+	this.isInputValid = function(input){
+		if(!input.match(/\[-?\d+,-?\d+]\s.+/))
+			return false;
+
+		return true;
+	}
+
 	this.setInput = function(input){
-		
+		if(this.isInputValid(input)){
+			if(!!ball){
+				ball.reset();
+				ball.setMoving(true);
+			}
+			else
+				ball = new Ball(level.ballPos.x,level.ballPos.y);
 
-		if(!!ball){
-			ball.reset();
-			ball.setMoving(true);
+			for(var i = 0; i<obstacles.length; i++)
+				obstacles[i].setTarget(ball);
+
+			numTries++;
+
+			if(numTries > (params.triesBeforeTip || 1)){
+				numTries = 0;
+				this.showTips();
+			}
+
+			this.calcCurve(input);
+			this.preDrawCurve();
 		}
-		else
-			ball = new Ball(level.ballPos.x,level.ballPos.y);
-
-		for(var i = 0; i<obstacles.length; i++)
-			obstacles[i].setTarget(ball);
-
-		this.calcCurve(input);
-		this.preDrawCurve();
 	}
 }
